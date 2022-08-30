@@ -31,6 +31,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//for https secure connection 'if(req.secure || req.headers['x-forwarded-proto'] === 'https')cookieOptions.secure = true;'
+app.enable('trust proxy');
+
 //!Global Midddlewares
 
 // Set security HTTP headers

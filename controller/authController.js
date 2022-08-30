@@ -18,7 +18,10 @@ const cookieOptions = {
         httpOnly: true
 };
 
-if(process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+//if(process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+
+//for hosting secure https connection
+if(req.secure || req.headers['x-forwarded-proto'] === 'https')cookieOptions.secure = true;
 
 
 //! Create new user
