@@ -14,11 +14,11 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const compression = require('compression');
 const cookieParser =  require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config()
 
-//mongo connetion
 
 //! Database Connection
 mongoose.connect(process.env.MONGO_URI).then(() =>{
@@ -78,6 +78,8 @@ app.use(hpp({
     ]}
 ));
 
+//compress the text send to the client. it compress our response not maaters its JSON or HTML
+app.use(compression())
 
 app.use((req,res,next)=>{
     //console.log('middleware user: ', req.locals)
