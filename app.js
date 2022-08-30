@@ -18,6 +18,7 @@ const cookieParser =  require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config()
 
+//mongo connetion
 
 //! Database Connection
 mongoose.connect(process.env.MONGO_URI).then(() =>{
