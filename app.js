@@ -13,6 +13,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
+const cors = require('cors')
 const hpp = require('hpp');
 const compression = require('compression');
 const cookieParser =  require('cookie-parser');
@@ -38,6 +39,30 @@ app.enable('trust proxy');
 
 // Set security HTTP headers
 app.use(helmet());
+
+
+//!_______________________________________________________
+
+//! Cors
+//!this for simple request 'get,post'
+//cors 'Access-Control-Allow-Origin *' this '*' star means all everywhere all routes,
+app.use(cors())
+
+//!or
+
+//if we want to only specific or perticular frontend domain can access this api just pass domain as option in cors eg:
+// app.use(cors({
+//     origin: 'https://www.natours.com'//example front end domain
+// }))
+
+//!this for non-simple request 'put,patch,delete'
+//set options http headers all routes '*'-> all routes and then 'cors()' allow this option put,patch,delete to ' Access-Control-Allow-Origin'
+app.options('*', cors())
+
+//perform non simple request (put,patch,delete) to perticular route
+//app.options('/api/v1/tour/:id', cors());
+
+//!______________________________________________________
 //reading data from into req.body not accepting data more than 10kb from user
 app.use(express.json({ limit: '10kb'}));
 app.use(cookieParser())
