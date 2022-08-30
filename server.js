@@ -25,7 +25,7 @@ process.on('unhandledRejection',err=>{
 });
 
 
-//!receive sig term signal from heroku because heroku use 'deno' container which is our application running every 24 hourse deno restart the application to maintain our application healthy so we have to handle 'sigtermsignal' shutting down application after complete all pending requests
+//!receive sig term signal from heroku because heroku use 'Dynos' container which is our application running every 24 hourse Dynos restart the application to maintain our application healthy so we have to handle 'sigtermsignal' shutting down application after complete all pending requests
 
 process.on('SIGTERM',()=>{
 console.log('SIGTERM Received. shutting down gracefully');
